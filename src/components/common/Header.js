@@ -7,10 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import DrawerComponent from '../layout/Drawer';
-
+import {useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -20,10 +21,8 @@ const Header = (props) => {
     setDrawerOpen(false);
   };
 
-  const handleItemClick = (itemText) => {
-    // Add logic to handle item click (optional)
-    console.log(`Clicked on ${itemText}`);
-    // Close the drawer
+  const handleItemClick = (RoutePath) => {
+    navigate(RoutePath);
     handleDrawerClose();
   };
 
@@ -44,8 +43,8 @@ const Header = (props) => {
           </IconButton>
 
           {/* Heading in the Center */}
-          <Stack direction="row" alignItems="center" justifyContent="center" flex={1}>
-            <Typography variant="h6" component="div">
+          <Stack direction="row" alignItems="center" justifyContent="center" >
+            <Typography variant={props.mobile?"h6":"h5"} component="div">
             {props.Heading}
             </Typography>
           </Stack>
@@ -63,3 +62,4 @@ const Header = (props) => {
 };
 
 export default Header;
+// sx={{ marginLeft: !props.mobile && '40%' }}
